@@ -40,6 +40,7 @@ const (
 	// exercise clients processing of the /directory response
 	// We export the DirectoryPath so that the pebble binary can reference it
 	DirectoryPath     = "/dir"
+	DirectoryPath2    = "/directory"
 	noncePath         = "/nonce-plz"
 	newAccountPath    = "/sign-me-up"
 	acctPath          = "/my-account/"
@@ -492,6 +493,7 @@ func (wfe *WebFrontEndImpl) Handler() http.Handler {
 	m := http.NewServeMux()
 	// GET & POST handlers
 	wfe.HandleFunc(m, DirectoryPath, wfe.Directory, http.MethodGet, http.MethodPost)
+	wfe.HandleFunc(m, DirectoryPath2, wfe.Directory, http.MethodGet, http.MethodPost)
 	// Note for noncePath: http.MethodGet also implies http.MethodHead
 	wfe.HandleFunc(m, noncePath, wfe.Nonce, http.MethodGet, http.MethodPost)
 
